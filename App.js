@@ -4,7 +4,7 @@ import BottomTab from './navigation/BottomTab';
 import AuthNav from './navigation/AuthNav';
 
 const App = () => {
-  const loginCheck = false;
+  const loginCheck = true;
   return (
     <SafeAreaView style={styles.Maincontainer}>
       {loginCheck === true ? (
