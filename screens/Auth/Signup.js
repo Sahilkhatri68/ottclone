@@ -1,61 +1,108 @@
-import {Button, StyleSheet, Text, TextInput, View} from 'react-native';
+import {
+  View,
+  Text,
+  TextInput,
+  StyleSheet,
+  TouchableOpacity,
+} from 'react-native';
 import React from 'react';
-// import {useState} from 'react';
-// import firebase from 'firebase/compat/app';
-// import 'firebase/compat/auth';
-// import 'firebase/compat/firestore';
+
 const Signup = ({navigation}) => {
-  // const [email, setEmail] = useState('');
-  // const [password, setPassword] = useState('');
-
-  // const handleSignup = async () => {
-  //   try {
-  //     const userCredential = await firebase
-  //       .auth()
-  //       .createUserWithEmailAndPassword(email, password);
-  //     const user = userCredential.user;
-  //     console.log('User signed up:', user);
-  //   } catch (error) {
-  //     console.error('Signup error:', error);
-  //   }
-  // };
-
   return (
-    <View style={{flex: 1, backgroundColor: 'white'}}>
-      <View>
-        <Text style={{color: 'black'}}>Signup</Text>
-        <Button title="Login" onPress={() => navigation.navigate('login')} />
+    <View style={styles.MainContainer}>
+      <View style={styles.container}>
+        <Text style={styles.text}>Sign up</Text>
       </View>
-      {/* <View>
-        <Text style={{fontSize: 30, fontWeight: 'bold', color: 'black'}}>
-          Email:
-        </Text>
-        <TextInput
-          placeholder="Email"
-          value={email}
-          style={{fontSize: 30, fontWeight: 'bold', color: 'black'}}
-          onChangeText={text => setEmail(text)}
-        />
-        <Text style={{fontSize: 30, fontWeight: 'bold', color: 'black'}}>
-          Password:
-        </Text>
-        <TextInput
-          placeholder="Password"
-          style={{fontSize: 30, fontWeight: 'bold', color: 'black'}}
-          secureTextEntry
-          value={password}
-          onChangeText={text => setPassword(text)}
-        />
-        <Button title="Signup" onPress={handleSignup} />
-      </View> */}
+      <View style={styles.midcont}>
+        <View>
+          <TextInput
+            style={styles.textinputcont}
+            placeholder="Enter your name"
+            placeholderTextColor="#484848"
+          />
+          <TextInput
+            style={styles.textinputcont}
+            placeholder="Enter your email "
+            placeholderTextColor="#484848"
+          />
+        </View>
+        <View>
+          <TouchableOpacity title="Login" style={styles.loginbtn}>
+            <Text style={styles.buttonText}>Sign Up</Text>
+          </TouchableOpacity>
+          <View style={styles.btmview}>
+            <View>
+              <Text style={styles.btmtext}>Already have an account?</Text>
+            </View>
+            <View>
+              <TouchableOpacity onPress={() => navigation.navigate('login')}>
+                <Text style={styles.navbtnsign}>Log In</Text>
+              </TouchableOpacity>
+            </View>
+          </View>
+        </View>
+      </View>
     </View>
   );
 };
 
 export default Signup;
-
 const styles = StyleSheet.create({
-  textsize: {
-    fontSize: 30,
+  MainContainer: {
+    flex: 1,
+    alignItems: 'center',
+    backgroundColor: 'black',
+  },
+  container: {
+    height: 200,
+    textAlign: 'center',
+    justifyContent: 'center',
+  },
+  midcont: {
+    flex: 1,
+    flexDirection: 'column',
+    justifyContent: 'space-between',
+  },
+  text: {
+    fontSize: 20,
+    color: 'white',
+  },
+  textinputcont: {
+    borderWidth: 1,
+    color: 'white',
+    borderColor: 'white',
+    width: 300,
+    borderRadius: 20,
+    padding: 15,
+    marginTop: 10,
+    marginBottom: 10,
+    height: 50,
+  },
+  loginbtn: {
+    borderWidth: 1,
+    backgroundColor: '#E33939',
+    height: 50,
+    borderRadius: 20,
+    justifyContent: 'center',
+  },
+  buttonText: {
+    textAlign: 'center',
+    color: 'white',
+    fontSize: 15,
+  },
+  btmview: {
+    flexDirection: 'row',
+    alignItems: 'center',
+    marginTop: 20,
+    justifyContent: 'center',
+    marginBottom: 20,
+  },
+  btmtext: {
+    color: 'white',
+  },
+  navbtnsign: {
+    color: 'white',
+    fontWeight: '900',
+    marginLeft: 10,
   },
 });
