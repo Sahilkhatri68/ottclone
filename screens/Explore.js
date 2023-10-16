@@ -1,4 +1,6 @@
 import {
+  Dimensions,
+  Image,
   ScrollView,
   StyleSheet,
   Text,
@@ -7,26 +9,30 @@ import {
 } from 'react-native';
 import React from 'react';
 import MaterialCommunityIcons from 'react-native-vector-icons/MaterialCommunityIcons';
-import {ViewPropTypes, Carousel} from 'deprecated-react-native-prop-types';
-// import Carousel from 'deprecated-react-native-snap-carousel';
-import {views1} from '../components/Viewdata';
-const renderItem1 = ({item}) => {
-  return (
-    <View style={styles.renderItem1_parentView}>
-      <Image source={{uri: item.imgUrl}} style={styles.renderItem1_img} />
-      <View style={styles.renderItem1_view1}>
-        <Text style={styles.renderItem1_text1}>OFFERS</Text>
-      </View>
-      <View style={styles.renderItem1_view2}>
-        <Text style={styles.renderItem1_text2}>{item.title}</Text>
-        <TouchableOpacity>
-          <Text style={styles.renderItem1_text3}>EXPLORE OFFERS</Text>
-        </TouchableOpacity>
-      </View>
-    </View>
-  );
-};
+import EvilIcons from 'react-native-vector-icons/EvilIcons';
+import Swiper from 'react-native-swiper';
+const DeviceWidth = Dimensions.get('screen').width;
 const Explore = () => {
+  const moviesdata = [
+    {
+      id: 1,
+      name: 'Movie 1',
+      imgsrclink:
+        'https://pics.filmaffinity.com/John_Wick_Chapter_4-101402041-large.jpg',
+    },
+    {
+      id: 2,
+      name: 'Movie 2',
+      imgsrclink:
+        'https://www.swagshirts99.com/wp-content/uploads/2022/04/John-Wick.jpg',
+    },
+    {
+      id: 3,
+      name: 'Movie 3',
+      imgsrclink:
+        'https://assets.gadgets360cdn.com/pricee/assets/product/202305/Extraction_2_Key_Art_2_English_1684309049.jpg',
+    },
+  ];
   return (
     <View style={styles.WrapCont}>
       <View style={styles.Maincont}>
@@ -46,19 +52,81 @@ const Explore = () => {
           </TouchableOpacity>
         </View>
         <ScrollView>
-          <View style={styles.carHead}>
-            <Text style={styles.carHeadtxt}>Now Playing</Text>
+          <View>
+            <View>
+              <View style={styles.carHead}>
+                <Text style={styles.carHeadtxt}>Now Playing</Text>
+              </View>
+              <Swiper
+                dot={false}
+                activeDot={false}
+                activeDotColor="black"
+                height={450}
+                style={styles.swipeCont}>
+                {moviesdata.map((item, key) => {
+                  return (
+                    <View style={styles.slidestyle} key={item.id}>
+                      <Image
+                        style={styles.slideImg}
+                        source={{
+                          uri: item.imgsrclink,
+                        }}
+                      />
+                      <View style={styles.tochview}>
+                        <View>
+                          <Text style={{color: 'white'}}>{item.name}</Text>
+                        </View>
+                        <View>
+                          <TouchableOpacity style={styles.trailbtn}>
+                            <EvilIcons name="play" color={'white'} size={20} />
+                            <Text
+                              style={{color: 'white', paddingHorizontal: 3}}>
+                              Watch Trailer
+                            </Text>
+                          </TouchableOpacity>
+                        </View>
+                      </View>
+                    </View>
+                  );
+                })}
+              </Swiper>
+            </View>
+          </View>
+          <View>
+            <View style={styles.carHead}>
+              <Text style={styles.carHeadtxt}>Upcoming</Text>
+            </View>
+          </View>
+          <View style={{}}>
+            <Swiper height={480} style={styles.swipeCont}>
+              {moviesdata.map((item, key) => {
+                return (
+                  <View style={styles.slidestyle} key={item.id}>
+                    <Image
+                      style={styles.slideImg}
+                      source={{
+                        uri: item.imgsrclink,
+                      }}
+                    />
+                    <View style={styles.tochview}>
+                      <View>
+                        <Text style={{color: 'white'}}>{item.name}</Text>
+                      </View>
+                      <View>
+                        <TouchableOpacity style={styles.trailbtn}>
+                          <EvilIcons name="play" color={'white'} size={20} />
+                          <Text style={{color: 'white', paddingHorizontal: 3}}>
+                            Watch Trailer
+                          </Text>
+                        </TouchableOpacity>
+                      </View>
+                    </View>
+                  </View>
+                );
+              })}
+            </Swiper>
           </View>
         </ScrollView>
-        <View>
-          {/* <Carousel
-            layout={'default'}
-            data={views1}
-            renderItem={renderItem1}
-            sliderWidth={400}
-            itemWidth={350}
-          /> */}
-        </View>
       </View>
     </View>
   );
@@ -70,8 +138,6 @@ const styles = StyleSheet.create({
   WrapCont: {
     flex: 1,
     backgroundColor: 'black',
-    // flexDirection: 'column',
-    // justifyContent: 'space-between',
   },
   Maincont: {
     paddingHorizontal: 10,
@@ -120,47 +186,32 @@ const styles = StyleSheet.create({
     fontSize: 16,
     fontWeight: 'bold',
   },
-  //
-  renderItem1_parentView: {
-    backgroundColor: '#ffffff',
-    borderRadius: 18,
-    height: 250,
-    width: 350,
-    justifyContent: 'space-around',
-    alignItems: 'center',
-    overflow: 'hidden',
+
+  swipeCont: {
+    marginTop: 20,
   },
-  renderItem1_view1: {
-    width: 80,
-    position: 'absolute',
-    fontSize: 20,
-    top: 10,
-    right: 20,
-    backgroundColor: '#ffffff',
-    borderRadius: 18,
-    alignItems: 'center',
+  slideImg: {
+    height: 350,
+    width: DeviceWidth - 20,
+    borderRadius: 30,
+    resizeMode: 'stretch',
   },
-  renderItem1_view2: {
-    width: 350,
+  slidestyle: {
+    width: DeviceWidth - 20,
+  },
+  tochview: {
     flexDirection: 'row',
-    justifyContent: 'space-around',
+    alignItems: 'center',
+    marginTop: 10,
+    justifyContent: 'space-between',
   },
-  renderItem1_img: {
-    width: 350,
-    height: 200,
-  },
-  renderItem1_text1: {
-    fontWeight: '700',
-    color: '#000000',
-  },
-  renderItem1_text2: {
-    marginVertical: 10,
-    fontSize: 20,
-    fontWeight: 'bold',
-  },
-  renderItem1_text3: {
-    marginVertical: 12,
-    color: 'blue',
-    fontWeight: 'bold',
+  trailbtn: {
+    backgroundColor: 'red',
+    padding: 5,
+    borderRadius: 20,
+    alignItems: 'center',
+    flexDirection: 'row',
+    alignItems: 'center',
+    marginTop: 5,
   },
 });

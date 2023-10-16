@@ -49,21 +49,6 @@ const Search = () => {
       imgurl:
         'https://mobcup.net/images/wt/aba6e58b2998d44bd64fa927809088a0.jpg',
     },
-    // {key: '7', name: 'Item 4'},
-    // {key: '8', name: 'Item 4'},
-    // {key: '9', name: 'Item 4'},
-    // {key: '10', name: 'Item 4'},
-    // {key: '11', name: 'Item 4'},
-    // {key: '12', name: 'Item 4'},
-    // {key: '13', name: 'Item 4'},
-    // {key: '14', name: 'Item 4'},
-    // {key: '15', name: 'Item 4'},
-    // {key: '16', name: 'Item 4'},
-    // {key: '17', name: 'Item 4'},
-    // {key: '18', name: 'Item 4'},
-    // {key: '19', name: 'Item 4'},
-    // {key: '20', name: 'Item 4'},
-    // {key: '21', name: 'Item 4'},
   ];
   return (
     <View style={styles.WrapCont}>

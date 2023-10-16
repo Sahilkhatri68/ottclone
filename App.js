@@ -2,9 +2,10 @@ import {StyleSheet, SafeAreaView, ScrollView, View} from 'react-native';
 import React from 'react';
 import BottomTab from './navigation/BottomTab';
 import AuthNav from './navigation/AuthNav';
+// firebase
 
 const App = () => {
-  const loginCheck = true;
+  const loginCheck = false;
   return (
     <SafeAreaView style={styles.Maincontainer}>
       {loginCheck === true ? (
